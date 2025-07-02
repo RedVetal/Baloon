@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Unity WebGL to GitHub Pages
 on:
   push:
     branches: [main]
@@ -6,12 +6,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Fake public folder
-        run: |
-          mv BUILD_Baloon public
-      - name: Deploy
+      - uses: actions/checkout@v4  # Шаг 1: Получить код из репозитория
+      
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./BUILD_Baloon  # Указываем папку с билдом Unity
