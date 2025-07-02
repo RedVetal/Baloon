@@ -1,24 +1,17 @@
-name: Deploy Unity WebGL to GitHub Pages
-
+name: Deploy Baloon Game
 on:
   push:
     branches: [main]
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Даём права на запись в репозиторий
-    
+      contents: write
     steps:
-      # Шаг 1: Получаем код из репозитория
       - uses: actions/checkout@v4
-        
-      # Шаг 2: Деплоим папку BUILD_Baloon на GitHub Pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./BUILD_Baloon
-          keep_files: false  # Очищаем старые файлы перед деплоем
-          force_orphan: true  # Всегда использовать свежий коммит (без истории)
+          publish_dir: ./BUILD_Baloon  # Делаем содержимое BUILD_Baloon корнем сайта
+          keep_files: false
